@@ -4,47 +4,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hangman</title>
     <link rel="stylesheet" href="style.css">
+    <title>Expense manager</title>
 </head>
 
 <body>
-
     <div class="title">
-        <h1>Hangman</h1>
-        <p>Guess a letter</p>
+        <h1>Expense Manager</h1>
     </div>
-
-
     <div class="container">
-
-        <div class="container__figure">
-            <img src="img/hangman-0.png" alt="Hangman" id="hangman-img">
-        </div>
-
-
-
-
-        <div class="container__word">
+        <div class="container__balance">
+            <h3>Balance</h3>
+            <div class="price">
+                <h1>$</h1>
+                <h1 id="balance"></h1>
+            </div>
 
         </div>
 
+        <div class="container__inc">
+            <h3>Incomes</h3>
+            <div class="price">
+                <h3>$</h3>
+                <h3 id="incomes"></h3>
+
+            </div>
+
+        </div>
+
+        <div class="container__exp">
+            <h3>Expenses</h3>
+            <div class="price">
+                <h3>$</h3>
+                <h3 id="expenses"></h3>
+
+            </div>
+
+        </div>
+
+        <div class="container__history">
+            <h2>History</h2>
+            <div class="container__history--container">
+
+
+
+            </div>
+        </div>
+
+        <div class="container__transaction">
+            <h2>Add transaction</h2>
+            <div class="container__transaction--container">
+                <input id="items" type="text" placeholder="Enter item...">
+                <input id="amount" type="number" placeholder="Enter amount...">
+            </div>
+
+        </div>
+        <div class="container__buttons">
+            <button class="container__buttons--btn" id="btn-inc">Add Income</button>
+            <button class="container__buttons--btn" id="btn-exp">Add Expense</button>
+        </div>
+
     </div>
-
-    <div class="alphabet">
-
-    </div>
-
-    <div class="message">
-        <button id="restart">Try again</button>
-        <p id="winner">You won!</p>
-        <p id="loser">You lost!</p>
-    </div>
-
 
 
 
 </body>
-<script src="hangman.js"></script>
+<script src="expense-manager.js"></script>
 
 </html>
