@@ -22,6 +22,7 @@ function addItemPair() {
 
       // Adding income class
       divIncome.setAttribute("class", "income");
+
       // Adding id for every income
       let idIncome;
       for (let i = 0; i <= sizeInc; i++) {
@@ -33,7 +34,6 @@ function addItemPair() {
       divIncome.setAttribute("id", idIncome);
       parent.appendChild(divIncome);
       incomeObj[idIncome] = document.querySelector("#amount").value;
-      console.log(incomeObj);
 
       // Add remove-button
       let buttonRemove = document.createElement("button");
@@ -72,6 +72,24 @@ function addItemPair() {
       // Resent input field
       document.querySelector("#items").value = null;
       document.querySelector("#amount").value = null;
+
+      //////////////////////////////////////////////
+
+      let allButtons = document.querySelectorAll(".remove");
+      for (let button of allButtons) {
+        button.addEventListener("click", function () {
+          let parentId = this.parentNode.getAttribute("id");
+          let x = document.getElementById(parentId);
+          if (x !== null) {
+            x.remove();
+          }
+
+          delete incomeObj[parentId];
+          console.log(incomeObj);
+          addItemPair();
+        });
+      }
+
       addItemPair();
     }
   });
@@ -102,7 +120,6 @@ function addItemPair() {
       divExpense.setAttribute("id", idExpense);
       parent.appendChild(divExpense);
       expenseObj[idExpense] = document.querySelector("#amount").value;
-      console.log(expenseObj);
 
       // Add remove-button
       let buttonRemove = document.createElement("button");
@@ -141,6 +158,19 @@ function addItemPair() {
       // Resent input field
       document.querySelector("#items").value = null;
       document.querySelector("#amount").value = null;
+      let allButtons = document.querySelectorAll(".remove");
+      for (let button of allButtons) {
+        button.addEventListener("click", function () {
+          let parentId = this.parentNode.getAttribute("id");
+          let x = document.getElementById(parentId);
+          if (x !== null) {
+            x.remove();
+          }
+
+          delete expenseObj[parentId];
+          console.log(expenseObj);
+        });
+      }
 
       addItemPair();
     }
@@ -161,10 +191,6 @@ function addItemPair() {
   let incomes = document.getElementById("incomes");
   let expenses = document.getElementById("expenses");
 
-  // Income and expense
-  let income = document.querySelectorAll(".inc-price");
-  let expense = document.querySelectorAll(".exp-price");
-
   // Incomes formula
 
   incomes.textContent = sumInc;
@@ -184,5 +210,7 @@ function addItemPair() {
     document.querySelector(".container__balance").style.backgroundColor =
       "#2d97eece";
   }
+  // Remove income
+  console.log("test");
 }
 addItemPair();
