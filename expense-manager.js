@@ -73,23 +73,6 @@ function addItemPair() {
       document.querySelector("#items").value = null;
       document.querySelector("#amount").value = null;
 
-      //////////////////////////////////////////////
-
-      let allButtons = document.querySelectorAll(".remove");
-      for (let button of allButtons) {
-        button.addEventListener("click", function () {
-          let parentId = this.parentNode.getAttribute("id");
-          let x = document.getElementById(parentId);
-          if (x !== null) {
-            x.remove();
-          }
-
-          delete incomeObj[parentId];
-          console.log(incomeObj);
-          addItemPair();
-        });
-      }
-
       addItemPair();
     }
   });
@@ -112,8 +95,8 @@ function addItemPair() {
       // Adding id for every expense
       let idExpense;
       for (let i = 0; i <= sizeExp; i++) {
-        if (!expenseObj["inc" + i]) {
-          idExpense = "inc" + i;
+        if (!expenseObj["exp" + i]) {
+          idExpense = "exp" + i;
         }
       }
       sizeExp += 1;
@@ -158,23 +141,28 @@ function addItemPair() {
       // Resent input field
       document.querySelector("#items").value = null;
       document.querySelector("#amount").value = null;
-      let allButtons = document.querySelectorAll(".remove");
-      for (let button of allButtons) {
-        button.addEventListener("click", function () {
-          let parentId = this.parentNode.getAttribute("id");
-          let x = document.getElementById(parentId);
-          if (x !== null) {
-            x.remove();
-          }
-
-          delete expenseObj[parentId];
-          console.log(expenseObj);
-        });
-      }
 
       addItemPair();
     }
   });
+
+  let allButtons = document.querySelectorAll(".remove");
+
+  for (let button of allButtons) {
+    button.addEventListener("click", function () {
+      let parentClass = this.parentNode.getAttribute("class");
+      let obj;
+      let parentId = this.parentNode.getAttribute("id");
+      let x = document.getElementById(parentId);
+      if (x !== null) {
+        x.remove();
+      }
+      parentClass === "income" ? (obj = incomeObj) : (obj = expenseObj);
+      delete obj[parentId];
+
+      addItemPair();
+    });
+  }
 
   // Return total value of incObj
   let sumInc = 0;
@@ -211,6 +199,5 @@ function addItemPair() {
       "#2d97eece";
   }
   // Remove income
-  console.log("test");
 }
 addItemPair();
